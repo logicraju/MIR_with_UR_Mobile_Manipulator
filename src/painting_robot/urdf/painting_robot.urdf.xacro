@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="mir_100_with_ur10" >
+
+  <!-- MiR100 base -->
+  <xacro:include filename="$(find painting_robot)/urdf/include/mir_100_v1.urdf.xacro" />
+  <xacro:include filename="$(find painting_robot)/urdf/include/common.gazebo.xacro" />
+
+  <xacro:arg name="tf_prefix" default="" />
+  <xacro:property name="tf_prefix_" value="$(arg tf_prefix)" />
+  <xacro:if value="${tf_prefix_ == ''}">
+    <xacro:property name="prefix" value="" />
+  </xacro:if>
+  <xacro:unless value="${tf_prefix_ == ''}">
+    <xacro:property name="prefix" value="${tf_prefix_}/" />
+  </xacro:unless>
+
+  <xacro:mir_100 prefix="${prefix}"/>
+  <xacro:controller_plugin_gazebo robot_namespace=""/>
+
+  <!-- instead of the controller_plugin_gazebo, you can use the diffdrive controller like this:
+    <xacro:diff_controller_plugin_gazebo prefix=""
+      left_wheel_joint="left_wheel_joint"
+      right_wheel_joint="right_wheel_joint"
+      wheel_separation="${2*mir_100_act_wheel_dy}"
+      wheel_radius="${mir_100_act_wheel_radius}"/>
+  -->
+  
+  <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find painting_robot)/urdf/common.gazebo.xacro" />
+
+  <!-- ur10 -->
+  <xacro:include filename="$(find painting_robot)/urdf/ur10.urdf.xacro" />
+
+  <!-- arm -->
+  <xacro:ur10_robot prefix="arm_" joint_limited="false"
+    transmission_hw_interface="$(arg transmission_hw_interface)"
+  />
+
+  <!--link name="world" /-->
+
+  <joint name="MIR_and_UR10_mount_joint" type="fixed">
+    <parent link="surface" />
+    <child link = "arm_base_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+</robot>

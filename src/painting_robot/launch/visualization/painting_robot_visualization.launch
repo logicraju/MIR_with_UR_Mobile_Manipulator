@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="limited" default="false" doc="If true, limits joint range [-PI, PI] on all joints." />
+  <arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find painting_robot)/urdf/painting_robot.urdf.xacro' transmission_hw_interface:=$(arg transmission_hw_interface)" />
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+    <param name="use_gui" value="true"/>
+  </node>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find painting_robot)/cfg/view_robot.rviz" required="true" />
+
+</launch>
