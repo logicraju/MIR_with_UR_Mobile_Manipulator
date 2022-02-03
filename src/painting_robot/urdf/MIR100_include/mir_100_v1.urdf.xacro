@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:include filename="$(find painting_robot)/urdf/include/common_properties.urdf.xacro" />
-  <xacro:include filename="$(find painting_robot)/urdf/include/imu.gazebo.urdf.xacro" />
-  <xacro:include filename="$(find painting_robot)/urdf/include/mir_100.gazebo.xacro" />
-  <xacro:include filename="$(find painting_robot)/urdf/include/mir_100.transmission.xacro" />
-  <xacro:include filename="$(find painting_robot)/urdf/include/sick_s300.urdf.xacro" />
+  <xacro:include filename="$(find painting_robot)/urdf/MIR100_include/common_properties.urdf.xacro" />
+  <xacro:include filename="$(find painting_robot)/urdf/MIR100_include/imu.gazebo.urdf.xacro" />
+  <xacro:include filename="$(find painting_robot)/urdf/MIR100_include/mir_100.gazebo.xacro" />
+  <xacro:include filename="$(find painting_robot)/urdf/MIR100_include/mir_100.transmission.xacro" />
+  <xacro:include filename="$(find painting_robot)/urdf/MIR100_include/sick_s300.urdf.xacro" />
 
   <xacro:property name="deg_to_rad" value="0.017453293" />
 

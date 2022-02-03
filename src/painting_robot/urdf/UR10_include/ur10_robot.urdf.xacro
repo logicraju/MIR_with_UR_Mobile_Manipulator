@@ -5,10 +5,10 @@
   <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
 
   <!-- common stuff -->
-  <xacro:include filename="$(find painting_robot)/urdf/common.gazebo.xacro" />
+  <xacro:include filename="$(find painting_robot)/urdf/UR10_include/common.gazebo.xacro" />
 
   <!-- ur10 -->
-  <xacro:include filename="$(find painting_robot)/urdf/ur10.urdf.xacro" />
+  <xacro:include filename="$(find painting_robot)/urdf/UR10_include/ur10.urdf.xacro" />
 
   <!-- arm -->
   <xacro:ur10_robot prefix="" joint_limited="false"

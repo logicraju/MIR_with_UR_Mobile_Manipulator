@@ -6,8 +6,8 @@
   Contributers: Jimmy Da Silva, Ajit Krisshna N L, Muhammad Asif Rana
 -->
 
-  <xacro:include filename="$(find painting_robot)/urdf/ur.transmission.xacro" />
-  <xacro:include filename="$(find painting_robot)/urdf/ur.gazebo.xacro" />
+  <xacro:include filename="$(find painting_robot)/urdf/UR10_include/ur.transmission.xacro" />
+  <xacro:include filename="$(find painting_robot)/urdf/UR10_include/ur.gazebo.xacro" />
 
   <xacro:macro name="cylinder_inertial" params="radius length mass *origin">
     <inertial>

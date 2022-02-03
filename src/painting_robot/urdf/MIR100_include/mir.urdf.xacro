@@ -3,8 +3,8 @@
        name="mir_100" >
 
   <!-- MiR100 base -->
-  <xacro:include filename="$(find painting_robot)/urdf/include/mir_100_v1.urdf.xacro" />
-  <xacro:include filename="$(find painting_robot)/urdf/include/common.gazebo.xacro" />
+  <xacro:include filename="$(find painting_robot)/urdf/MIR100_include/mir_100_v1.urdf.xacro" />
+  <xacro:include filename="$(find painting_robot)/urdf/MIR100_include/common.gazebo.xacro" />
 
   <xacro:arg name="tf_prefix" default="" />
   <xacro:property name="tf_prefix_" value="$(arg tf_prefix)" />
