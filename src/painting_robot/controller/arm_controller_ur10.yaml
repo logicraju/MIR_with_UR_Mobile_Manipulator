@@ -28,10 +28,10 @@ joint_group_position_controller:
      - arm_wrist_1_joint
      - arm_wrist_2_joint
      - arm_wrist_3_joint
-gazebo_ros_control/pid_gains:
-  arm_shoulder_pan_joint: {p: 1.0, i: 1.0, d: 0.0}
-  arm_shoulder_lift_joint: {p: 1.0, i: 1.0, d: 0.0}
-  arm_elbow_joint: {p: 1.0, i: 1.0, d: 0.0}
-  arm_wrist_1_joint: {p: 1.0, i: 1.0, d: 0.0}
-  arm_wrist_2_joint: {p: 1.0, i: 1.0, d: 0.0}
-  arm_wrist_3_joint: {p: 1.0, i: 1.0, d: 0.0}
+#gazebo_ros_control/pid_gains:
+#  arm_shoulder_pan_joint: {p: 50000.0, i: 0.0, d: 500.0}
+#  arm_shoulder_lift_joint: {p: 50000.0, i: 0.0, d: 500.0}
+#  arm_elbow_joint: {p: 50000.0, i: 0.0, d: 500.0}
+#  arm_wrist_1_joint: {p: 50000.0, i: 0.0, d: 500.0}
+#  arm_wrist_2_joint: {p: 50000.0, i: 0.0, d: 500.0}
+#  arm_wrist_3_joint: {p: 50000.0, i: 0.0, d: 500.0}
