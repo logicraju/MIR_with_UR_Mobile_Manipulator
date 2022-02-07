@@ -28,4 +28,10 @@ joint_group_position_controller:
      - wrist_1_joint
      - wrist_2_joint
      - wrist_3_joint
-
+gazebo_ros_control/pid_gains:
+  shoulder_pan_joint: {p: 1.0, i: 1.0, d: 0.0}
+  shoulder_lift_joint: {p: 1.0, i: 1.0, d: 0.0}
+  elbow_joint: {p: 1.0, i: 1.0, d: 0.0}
+  wrist_1_joint: {p: 1.0, i: 1.0, d: 0.0}
+  wrist_2_joint: {p: 1.0, i: 1.0, d: 0.0}
+  wrist_3_joint: {p: 1.0, i: 1.0, d: 0.0}
