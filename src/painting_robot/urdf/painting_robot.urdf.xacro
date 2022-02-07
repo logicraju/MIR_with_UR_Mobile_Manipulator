@@ -17,7 +17,7 @@
   </xacro:unless>
 
   <xacro:mir_100 prefix="${prefix}"/>
-  <xacro:controller_plugin_gazebo robot_namespace=""/>
+  <!--xacro:controller_plugin_gazebo robot_namespace=""/-->
 
 
 <!-- UR 10 -->
