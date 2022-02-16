@@ -9,7 +9,7 @@
   <arg name="prefix" value="$(arg tf_prefix)/" if="$(eval tf_prefix != '')" /> <!-- $(arg prefix) is used in all the config files! TODO: For multiple robots, create groups when loading the parameters to overwrite the arg? -->
   <arg name="prefix" value=""                  unless="$(eval tf_prefix != '')" />
 
-  <arg name="model_name" default="mir" doc="Name of the Gazebo robot model (needs to be different for each robot)" />
+  <arg name="model_name" default="mir100_with_ur10" doc="Name of the Gazebo robot model (needs to be different for each robot)" />
 
 
   <!-- Load URDF -->
@@ -19,7 +19,7 @@
 
   <!-- Spawn the robot into Gazebo -->
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model $(arg model_name)
-    -x $(arg robot_x) -y $(arg robot_y) -Y $(arg robot_yaw) " />
+    -x $(arg robot_x) -y $(arg robot_y) -Y $(arg robot_yaw)" />
 
   <!-- Load ros_control controller configurations -->
   <rosparam file="$(find painting_robot)/config/joint_state_controller.yaml" command="load" />

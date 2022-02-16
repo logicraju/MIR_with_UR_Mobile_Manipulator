@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <include file="$(find painting_robot)/launch/simulation/painting_robot_gazebo.launch"/>
+  <include file="$(find ur10_moveit_config)/launch/ur10_moveit_planning_execution.launch">
+    <arg name="sim" value="true" />
+    <!--arg name="pipeline" value="pilz_command_planner"/-->
+  </include>
+  <include file="$(find ur10_moveit_config)/launch/moveit_rviz.launch">
+    <arg name="config" value="true" />
+  </include>
+  
+</launch>
