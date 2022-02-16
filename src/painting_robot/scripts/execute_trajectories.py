@@ -15,6 +15,10 @@ scene = moveit_commander.PlanningSceneInterface()
 group = moveit_commander.MoveGroupCommander("manipulator")
 display_trajectory_publisher = rospy.Publisher('/move_group/display_planned_path', moveit_msgs.msg.DisplayTrajectory)
 
+#PILZ Params
+group.set_planning_pipeline_id("pilz_industrial_motion_planner")
+group.set_planner_id("LIN")
+
 group_variable_values = group.get_current_joint_values()
 
 
