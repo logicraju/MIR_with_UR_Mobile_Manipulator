@@ -38,13 +38,13 @@ def start_program():
             for i in range(STEPS_COUNT_Y):
                 current_pose_old = r.get_current_pose()
                 RELATIVE_VALUE_Y = RELATIVE_VALUE_Y - STEP_SIZE_Y # move sideways (y)
-                blend_sequence.append(Ptp(goal=Pose(position=Point(0, RELATIVE_VALUE_Y, RELATIVE_VALUE_Z)), vel_scale=__ROBOT_VELOCITY__, acc_scale=__ROBOT_ACC__, reference_frame="arm_ee_link", relative=True))
+                blend_sequence.append(Lin(goal=Pose(position=Point(0, RELATIVE_VALUE_Y, RELATIVE_VALUE_Z)), vel_scale=__ROBOT_VELOCITY__, acc_scale=__ROBOT_ACC__, reference_frame="arm_ee_link", relative=True))
             RELATIVE_VALUE_Z = RELATIVE_VALUE_Z + STEP_SIZE_Z # move down (z)
             blend_sequence.append(Circ(goal=Pose(position=Point(0, RELATIVE_VALUE_Y, RELATIVE_VALUE_Z)), center=Point(0, RELATIVE_VALUE_Y+CIRCLE_RADIUS, RELATIVE_VALUE_Z-CIRCLE_RADIUS), reference_frame="arm_ee_link"))
             
             for i in range(STEPS_COUNT_Y):
                 RELATIVE_VALUE_Y = RELATIVE_VALUE_Y + STEP_SIZE_Y # move sideways (y)
-                blend_sequence.append(Ptp(goal=Pose(position=Point(0, RELATIVE_VALUE_Y, RELATIVE_VALUE_Z)), vel_scale=__ROBOT_VELOCITY__, acc_scale=__ROBOT_ACC__, reference_frame="arm_ee_link", relative=True))
+                blend_sequence.append(Lin(goal=Pose(position=Point(0, RELATIVE_VALUE_Y, RELATIVE_VALUE_Z)), vel_scale=__ROBOT_VELOCITY__, acc_scale=__ROBOT_ACC__, reference_frame="arm_ee_link", relative=True))
             RELATIVE_VALUE_Z = RELATIVE_VALUE_Z + STEP_SIZE_Z # move down (z)
             blend_sequence.append(Circ(goal=Pose(position=Point(0, RELATIVE_VALUE_Y, RELATIVE_VALUE_Z)), center=Point(0, RELATIVE_VALUE_Y-CIRCLE_RADIUS, RELATIVE_VALUE_Z-CIRCLE_RADIUS), reference_frame="arm_ee_link"))
         r.move(blend_sequence)
@@ -58,5 +58,5 @@ if __name__ == "__main__":
     r = Robot(__REQUIRED_API_VERSION__)
     initialize()
     start_program()
-    goto_zero_pose()
+    #goto_zero_pose()
     exit(0)
