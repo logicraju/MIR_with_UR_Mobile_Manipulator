@@ -6,60 +6,57 @@ import rospy
 import copy
 
 __REQUIRED_API_VERSION__ = "1"
-__ROBOT_VELOCITY__ = 0.5
-__ROBOT_ACC__ = 0.5
+__ROBOT_VELOCITY__ = 0.3
+__ROBOT_ACC__ = 0.1
+
+RELATIVE_VALUE_Y = 0.0
+RELATIVE_VALUE_Z = 0.0
+STEPS_COUNT_Y = 1
+STEPS_COUNT_Z = 5
+STEP_SIZE_Y = 0.5
+STEP_SIZE_Z = 0.05
+CIRCLE_RADIUS = STEP_SIZE_Z/2
+
+def goto_zero_pose():
+    zero_pos = [0, 0, 0, 0, 0, 0]   # joint values
+    r.move(Ptp(goal=zero_pos, vel_scale=__ROBOT_VELOCITY__, reference_frame="arm_base_link"))
 
 def initialize():
-    rospy.set_param('truth', True)
-    cartesian_limits:
-  max_trans_vel: 1
-  max_trans_acc: 2.25
-  max_trans_dec: -5
-  max_rot_vel: 1.57
+    global STEPS_COUNT_Y, STEPS_COUNT_Z, STEP_SIZE_Y, STEP_SIZE_Z
     start_pos = [0, -1.5, 1.5, 0, 1.5, 0]   # joint values
-    #r.move(Lin(goal=start_pos, vel_scale=__ROBOT_VELOCITY__))
-    r.move(Ptp(goal=start_pos, vel_scale=__ROBOT_VELOCITY__))
+    r.move(Ptp(goal=start_pos, vel_scale=__ROBOT_VELOCITY__, reference_frame="arm_base_link"))
+
 # main program
 def start_program():
-
+    global RELATIVE_VALUE_Y, RELATIVE_VALUE_Z, STEPS_COUNT_Y, STEPS_COUNT_Z, STEP_SIZE_Y, STEP_SIZE_Z
     # Blend sequence
     blend_sequence = Sequence()
-    scale = 1.0
-    current_pose = r.get_current_pose()
-    #print("current_pose: " + str(current_pose.position))
-    
+
     try:
-
-        for i in range(10):
-            for i in range(10):
-                new_pose = copy.deepcopy(current_pose)
-                new_pose.position.y -= scale * 0.5  # and sideways (y)
-                #blend_sequence.append(Ptp(goal=Pose(position=new_pose.position), relative=False, vel_scale=__ROBOT_VELOCITY__, acc_scale=__ROBOT_ACC__))
-                blend_sequence.append(Lin(goal=Pose(position=new_pose.position), vel_scale=__ROBOT_VELOCITY__, relative=False))
-                print("new_pose: " + str(new_pose.position))
-            new_pose.position.z -= scale * 0.1  # move down (z)
-            #blend_sequence.append(Ptp(goal=Pose(position=new_pose.position), relative=False, vel_scale=__ROBOT_VELOCITY__, acc_scale=__ROBOT_ACC__))
-            blend_sequence.append(Lin(goal=Pose(position=new_pose.position), vel_scale=__ROBOT_VELOCITY__, relative=False))
-            print("new_pose: " + str(new_pose.position))
+        r.move(Ptp(goal=Pose(position=Point(0, (STEP_SIZE_Y*STEPS_COUNT_Y)/2, 0)), vel_scale=__ROBOT_VELOCITY__, acc_scale=__ROBOT_ACC__, reference_frame="arm_ee_link", relative=True))
+        for j in range(STEPS_COUNT_Z):
+            for i in range(STEPS_COUNT_Y):
+                current_pose_old = r.get_current_pose()
+                RELATIVE_VALUE_Y = RELATIVE_VALUE_Y - STEP_SIZE_Y # move sideways (y)
+                blend_sequence.append(Ptp(goal=Pose(position=Point(0, RELATIVE_VALUE_Y, RELATIVE_VALUE_Z)), vel_scale=__ROBOT_VELOCITY__, acc_scale=__ROBOT_ACC__, reference_frame="arm_ee_link", relative=True))
+            RELATIVE_VALUE_Z = RELATIVE_VALUE_Z + STEP_SIZE_Z # move down (z)
+            blend_sequence.append(Circ(goal=Pose(position=Point(0, RELATIVE_VALUE_Y, RELATIVE_VALUE_Z)), center=Point(0, RELATIVE_VALUE_Y+CIRCLE_RADIUS, RELATIVE_VALUE_Z-CIRCLE_RADIUS), reference_frame="arm_ee_link"))
             
-            for i in range(10):
-                new_pose = copy.deepcopy(current_pose)
-                new_pose.position.y += scale * 0.5  # and sideways (y)
-                #blend_sequence.append(Ptp(goal=Pose(position=new_pose.position), relative=False, vel_scale=__ROBOT_VELOCITY__, acc_scale=__ROBOT_ACC__))
-                blend_sequence.append(Lin(goal=Pose(position=new_pose.position), vel_scale=__ROBOT_VELOCITY__, relative=False))
-                print("new_pose: " + str(new_pose.position))
-            new_pose.position.z -= scale * 0.1  # move down (z)
-            #blend_sequence.append(Ptp(goal=Pose(position=new_pose.position), relative=False, vel_scale=__ROBOT_VELOCITY__, acc_scale=__ROBOT_ACC__))
-            blend_sequence.append(Lin(goal=Pose(position=new_pose.position), vel_scale=__ROBOT_VELOCITY__, relative=False))
-            print("new_pose: " + str(new_pose.position))
-
+            for i in range(STEPS_COUNT_Y):
+                RELATIVE_VALUE_Y = RELATIVE_VALUE_Y + STEP_SIZE_Y # move sideways (y)
+                blend_sequence.append(Ptp(goal=Pose(position=Point(0, RELATIVE_VALUE_Y, RELATIVE_VALUE_Z)), vel_scale=__ROBOT_VELOCITY__, acc_scale=__ROBOT_ACC__, reference_frame="arm_ee_link", relative=True))
+            RELATIVE_VALUE_Z = RELATIVE_VALUE_Z + STEP_SIZE_Z # move down (z)
+            blend_sequence.append(Circ(goal=Pose(position=Point(0, RELATIVE_VALUE_Y, RELATIVE_VALUE_Z)), center=Point(0, RELATIVE_VALUE_Y-CIRCLE_RADIUS, RELATIVE_VALUE_Z-CIRCLE_RADIUS), reference_frame="arm_ee_link"))
         r.move(blend_sequence)
+    except RobotMoveFailed:
+        rospy.loginfo("Command failed ...")
     except Exception as e:
         print("Exception: " + str(e))
+
 if __name__ == "__main__":
     rospy.init_node('robot_program_node')
     r = Robot(__REQUIRED_API_VERSION__)
     initialize()
     start_program()
-    initialize()
+    goto_zero_pose()
     exit(0)

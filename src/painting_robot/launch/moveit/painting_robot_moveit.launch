@@ -7,8 +7,16 @@
     <!--arg name="pipeline" value="pilz_command_planner"/-->
     <arg name="pipeline" value="pilz_industrial_motion_planner"/>
   </include>
+  
   <include file="$(find ur10_moveit_config)/launch/moveit_rviz.launch">
     <arg name="config" value="true" />
   </include>
+
+  <!--group ns="$(arg robot_description)_planning"-->
+  <group ns="robot_description_planning">
+    <rosparam command="load" file="$(find painting_robot)/config/joint_limits.yaml"/>
+    <rosparam command="load" file="$(find painting_robot)/config/cartesian_limits.yaml"/>
+  </group>
+
   
 </launch>
