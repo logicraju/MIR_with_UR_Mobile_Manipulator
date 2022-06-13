@@ -1,4 +1,4 @@
-# Dependencies
+### Dependencies
 ------------
 cpp_common  
 rostime  
@@ -27,7 +27,7 @@ rospy
   
   
 
-# How to run
+### How to run
 ----------
 1. roslaunch painting_robot painting_robot_moveit.launch
 2. rosrun painting_robot pilz_zigzag.py
