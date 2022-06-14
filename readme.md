@@ -24,7 +24,7 @@ Install dependencies using the command:
 
 ### Contact Us
 --------------
-#### QboticsLabs
-##### Address: DOOR NO. 8/428, KURUMASSERY, KOCHI, Kerala 683579
-##### Phone: +918907590702
-##### https://qboticslabs.com/
+QboticsLabs  
+Address: DOOR NO. 8/428, KURUMASSERY, KOCHI, Kerala 683579  
+Phone: +918907590702  
+https://qboticslabs.com/  
