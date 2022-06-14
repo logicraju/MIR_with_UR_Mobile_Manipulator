@@ -5,6 +5,10 @@ In this project, a simple zig-zag movement comprising of a sequence of linear an
 https://ros-planning.github.io/moveit_tutorials/doc/pilz_industrial_motion_planner/pilz_industrial_motion_planner.html
 
 
+### Video Link
+--------------
+https://youtu.be/iLDIrMVe6z4
+
 
 ### Dependencies
 ----------------
