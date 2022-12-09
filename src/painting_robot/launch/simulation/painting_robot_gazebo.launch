@@ -6,7 +6,8 @@
 
   <arg name="gui" default="true" />
   <arg name="paused" default="false" doc="Starts gazebo in paused mode" />
-  <arg name="world_name" default="worlds/empty.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable, but can also be an absolute path -->
+  <!--arg name="world_name" default="worlds/empty.world"/--> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable, but can also be an absolute path -->
+  <arg name="world_name" value="$(find painting_robot)/gazebo_worlds/tether.world"/>
   <arg name="limited" default="false"  doc="If true, limits joint range [-PI, PI] on all joints." />
   <arg name="robot_x"   default="0.0" />
   <arg name="robot_y"   default="0.0" />

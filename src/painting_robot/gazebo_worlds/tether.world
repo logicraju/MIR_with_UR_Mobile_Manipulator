@@ -1,0 +1,2721 @@
+<sdf version='1.7'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='table_and_tether'>
+      <link name='tether_connection_link'>
+        <gravity>0</gravity>
+        <pose>0.9 -0.508 2.5 0 -0 0</pose>
+        <visual name='visual'>
+          <material>
+            <script>
+              <name>Gazebo/Yellow</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+          <geometry>
+            <cylinder>
+              <radius>0.25</radius>
+              <length>0.1</length>
+            </cylinder>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+          <mass>1</mass>
+        </inertial>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='joint_table' type='fixed'>
+        <child>tether_connection_link</child>
+        <parent>world</parent>
+      </joint>
+      <link name='link_00'>
+        <gravity>1</gravity>
+        <pose>0.1 0 2.5 0 -0 0</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Yellow</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_01'>
+        <gravity>1</gravity>
+        <pose>0.1 0 2.5 0 -0 0</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_02'>
+        <gravity>1</gravity>
+        <pose>0.3 0 2.5 0 -0 0</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_03'>
+        <gravity>1</gravity>
+        <pose>0.5 0 2.5 0 -0 0</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_04'>
+        <gravity>1</gravity>
+        <pose>0.7 0 2.5 0 -0 0</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_05'>
+        <gravity>1</gravity>
+        <pose>0.9 0 2.5 0 -0 0</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_06'>
+        <gravity>1</gravity>
+        <pose>1.1 0 2.5 0 0 -0.785</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.0875 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.0875 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.175</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.0875 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.175</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_07'>
+        <gravity>1</gravity>
+        <pose>1.227 -0.127 2.5 0 0 -2.3415</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.0875 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.0875 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.175</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.0875 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.175</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_08'>
+        <gravity>1</gravity>
+        <pose>1.1 -0.254 2.5 0 0 -3.1415</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_09'>
+        <gravity>1</gravity>
+        <pose>0.9 -0.254 2.5 0 0 -3.1415</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_10'>
+        <gravity>1</gravity>
+        <pose>0.7 -0.254 2.5 0 0 -3.1415</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_11'>
+        <gravity>1</gravity>
+        <pose>0.5 -0.254 2.5 0 0 -3.1415</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_12'>
+        <gravity>1</gravity>
+        <pose>0.3 -0.254 2.5 0 0 -3.1415</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_13'>
+        <gravity>1</gravity>
+        <pose>0.1 -0.254 2.5 0 0 -2.356</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.0875 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.0875 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.175</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.0875 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.175</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_14'>
+        <gravity>1</gravity>
+        <pose>-0.027 -0.381 2.5 0 0 -0.785</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.0875 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.0875 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.175</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.0875 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.175</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_15'>
+        <gravity>1</gravity>
+        <pose>0.1 -0.508 2.5 0 -0 0</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_16'>
+        <gravity>1</gravity>
+        <pose>0.3 -0.508 2.5 0 -0 0</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_17'>
+        <gravity>1</gravity>
+        <pose>0.5 -0.508 2.5 0 -0 0</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_18'>
+        <gravity>1</gravity>
+        <pose>0.7 -0.508 2.5 0 -0 0</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='link_19'>
+        <gravity>1</gravity>
+        <pose>0.9 -0.508 2.5 0 -0 0</pose>
+        <inertial>
+          <mass>0.009</mass>
+          <pose>0.1 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0.1 0 0 0 1.57079 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.2</length>
+              <radius>0.001</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <min_depth>5e-05</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='sphere'>
+          <geometry>
+            <sphere>
+              <radius>0.009</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='joint_01' type='universal'>
+        <child>link_01</child>
+        <parent>link_00</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_02' type='universal'>
+        <child>link_02</child>
+        <parent>link_01</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_03' type='universal'>
+        <child>link_03</child>
+        <parent>link_02</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_04' type='universal'>
+        <child>link_04</child>
+        <parent>link_03</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_05' type='universal'>
+        <child>link_05</child>
+        <parent>link_04</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_06' type='universal'>
+        <child>link_06</child>
+        <parent>link_05</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-0.72</lower>
+            <upper>2.35</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>1 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_07' type='universal'>
+        <child>link_07</child>
+        <parent>link_06</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-0</lower>
+            <upper>3</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>-1 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_08' type='universal'>
+        <child>link_08</child>
+        <parent>link_07</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-0.72</lower>
+            <upper>2.35</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_09' type='universal'>
+        <child>link_09</child>
+        <parent>link_08</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_10' type='universal'>
+        <child>link_10</child>
+        <parent>link_09</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_11' type='universal'>
+        <child>link_11</child>
+        <parent>link_10</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_12' type='universal'>
+        <child>link_12</child>
+        <parent>link_11</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_13' type='universal'>
+        <child>link_13</child>
+        <parent>link_12</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-2.35</lower>
+            <upper>0.72</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>-1 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_14' type='universal'>
+        <child>link_14</child>
+        <parent>link_13</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-3</lower>
+            <upper>0</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>1 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_15' type='universal'>
+        <child>link_15</child>
+        <parent>link_14</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-2.35</lower>
+            <upper>0.72</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_16' type='universal'>
+        <child>link_16</child>
+        <parent>link_15</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_17' type='universal'>
+        <child>link_17</child>
+        <parent>link_16</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_18' type='universal'>
+        <child>link_18</child>
+        <parent>link_17</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='joint_19' type='universal'>
+        <child>link_19</child>
+        <parent>link_18</parent>
+        <axis>
+          <xyz expressed_in='__model__'>0 1 0</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis>
+        <axis2>
+          <xyz expressed_in='__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>1.57</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_stiffness>0.05</spring_stiffness>
+            <spring_reference>0</spring_reference>
+          </dynamics>
+        </axis2>
+        <physics>
+          <ode>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <joint name='fixed_to_world' type='fixed'>
+        <child>link_19</child>
+        <parent>tether_connection_link</parent>
+      </joint>
+      <plugin name='link00_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_00</link_name>
+      </plugin>
+      <plugin name='link01_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_01</link_name>
+      </plugin>
+      <plugin name='link02_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_02</link_name>
+      </plugin>
+      <plugin name='link03_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_03</link_name>
+      </plugin>
+      <plugin name='link04_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_04</link_name>
+      </plugin>
+      <plugin name='link05_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_05</link_name>
+      </plugin>
+      <plugin name='link06_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_06</link_name>
+      </plugin>
+      <plugin name='link07_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_07</link_name>
+      </plugin>
+      <plugin name='link08_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_08</link_name>
+      </plugin>
+      <plugin name='link09_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_09</link_name>
+      </plugin>
+      <plugin name='link10_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_10</link_name>
+      </plugin>
+      <plugin name='link11_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_11</link_name>
+      </plugin>
+      <plugin name='link12_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_12</link_name>
+      </plugin>
+      <plugin name='link13_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_13</link_name>
+      </plugin>
+      <plugin name='link14_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_14</link_name>
+      </plugin>
+      <plugin name='link15_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_15</link_name>
+      </plugin>
+      <plugin name='link16_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_16</link_name>
+      </plugin>
+      <plugin name='link17_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_17</link_name>
+      </plugin>
+      <plugin name='link18_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_18</link_name>
+      </plugin>
+      <plugin name='link19_drag' filename='libLiftDragPlugin.so'>
+        <robotNamespace/>
+        <a0>0</a0>
+        <cla>0</cla>
+        <cda>1.2535816618911175</cda>
+        <alpha_stall>0</alpha_stall>
+        <cda_stall>1.4326647564469914</cda_stall>
+        <cp>0 0 0</cp>
+        <area>0.0004</area>
+        <air_density>1.2041</air_density>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>link_19</link_name>
+      </plugin>
+      <pose>0.096242 -0.294861 0 0 -0 0</pose>
+    </model>
+    <state world_name='default'>
+      <sim_time>94 909000000</sim_time>
+      <real_time>95 640128624</real_time>
+      <wall_time>1670519724 100587114</wall_time>
+      <iterations>94909</iterations>
+      <model name='ground_plane'>
+        <pose>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='table_and_tether'>
+        <pose>0.096242 -0.294861 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link_00'>
+          <pose>0.5327 -0.408462 0.001 -1.43857 0.173676 -1.42519</pose>
+          <velocity>1.4e-05 -9e-05 0.000168 0.000171 0.000129 0.000259</velocity>
+          <acceleration>0.017966 -0.120982 0.140981 -0.000738 0.084693 0.016239</acceleration>
+          <wrench>0.000162 -0.001089 0.001269 0 -0 0</wrench>
+        </link>
+        <link name='link_01'>
+          <pose>0.532701 -0.408462 0.001 -1.43661 1e-06 -1.42541</pose>
+          <velocity>-2.9e-05 -4e-06 8e-06 -5.5e-05 7.5e-05 0.000365</velocity>
+          <acceleration>-0.000961 -3.9e-05 -0.007314 -0.13638 0.076069 -0.054708</acceleration>
+          <wrench>-9e-06 -0 -6.6e-05 0 -0 0</wrench>
+        </link>
+        <link name='link_02'>
+          <pose>0.561673 -0.606353 0.001 -1.43938 2e-06 -1.22072</pose>
+          <velocity>1e-06 -1e-06 5.5e-05 0.00024 0.000168 1.6e-05</velocity>
+          <acceleration>-0.37636 -0.101664 0.108702 -0.164535 0.064039 -0.03262</acceleration>
+          <wrench>-0.003387 -0.000915 0.000978 0 -0 0</wrench>
+        </link>
+        <link name='link_03'>
+          <pose>0.630268 -0.794221 0.000998 -1.45785 5.2e-05 -0.681567</pose>
+          <velocity>0.000162 -0.00018 0.000466 0.000315 0.000196 -0.000449</velocity>
+          <acceleration>0.139343 -0.208643 0.485305 0.408313 0.741155 -0.044136</acceleration>
+          <wrench>0.001254 -0.001878 0.004368 0 -0 0</wrench>
+        </link>
+        <link name='link_04'>
+          <pose>0.785586 -0.920223 0.000989 -1.47779 -0.157042 -0.072635</pose>
+          <velocity>4.3e-05 -0.000196 0.000334 0.000289 -0.000217 -4.6e-05</velocity>
+          <acceleration>0.065861 -0.168992 0.302134 0.332922 -0.238427 0.131515</acceleration>
+          <wrench>0.000593 -0.001521 0.002719 0 -0 0</wrench>
+        </link>
+        <link name='link_05'>
+          <pose>0.982604 -0.934559 0.032269 -1.58444 -0.282382 0.540057</pose>
+          <velocity>4.8e-05 -0.000214 0.000272 0.000128 3.6e-05 2e-06</velocity>
+          <acceleration>0.065575 -0.16194 0.224663 0.173946 0.015837 0.071489</acceleration>
+          <wrench>0.00059 -0.001457 0.002022 0 -0 0</wrench>
+        </link>
+        <link name='link_06'>
+          <pose>1.14735 -0.835795 0.087999 -2.01492 -0.748325 1.13474</pose>
+          <velocity>5.9e-05 -0.000222 0.000184 4.4e-05 7e-06 7.1e-05</velocity>
+          <acceleration>0.057328 -0.161548 0.142169 0.113637 -0.010093 0.110159</acceleration>
+          <wrench>0.000516 -0.001454 0.00128 0 -0 0</wrench>
+        </link>
+        <link name='link_07'>
+          <pose>1.20289 -0.716518 0.210253 2.58468 -1.20171 2.98319</pose>
+          <velocity>5.5e-05 -0.00022 0.000104 -0.000123 2.2e-05 -2e-06</velocity>
+          <acceleration>0.050853 -0.153548 0.064807 -0.067032 0.022766 0.027273</acceleration>
+          <wrench>0.000458 -0.001382 0.000583 0 -0 0</wrench>
+        </link>
+        <link name='link_08'>
+          <pose>1.13728 -0.708306 0.377242 1.96985 -1.19999 -2.43786</pose>
+          <velocity>5.8e-05 -0.000188 3.7e-05 -0.000122 1.2e-05 -2.5e-05</velocity>
+          <acceleration>0.050157 -0.129541 -0.000652 -0.073868 0.012616 -0.003184</acceleration>
+          <wrench>0.000451 -0.001166 -6e-06 0 -0 0</wrench>
+        </link>
+        <link name='link_09'>
+          <pose>1.08201 -0.755217 0.563644 2.17551 -1.42095 -2.64261</pose>
+          <velocity>4.9e-05 -0.000143 2e-06 -7.2e-05 -1e-06 -1.9e-05</velocity>
+          <acceleration>0.039767 -0.096644 -0.037624 -0.028227 0.005621 0.002286</acceleration>
+          <wrench>0.000358 -0.00087 -0.000339 0 -0 0</wrench>
+        </link>
+        <link name='link_10'>
+          <pose>1.05579 -0.76952 0.761402 2.47055 -1.47007 -2.93968</pose>
+          <velocity>2.1e-05 -8.8e-05 -2e-06 -4.7e-05 -4e-06 -2e-05</velocity>
+          <acceleration>0.011941 -0.051839 -0.039492 -0.00804 0.003996 0.000863</acceleration>
+          <wrench>0.000107 -0.000467 -0.000355 0 -0 0</wrench>
+        </link>
+        <link name='link_11'>
+          <pose>1.03608 -0.77357 0.960389 2.34156 -1.46008 -2.80997</pose>
+          <velocity>1.1e-05 -5.3e-05 -7e-06 -3.7e-05 -4e-06 -2.1e-05</velocity>
+          <acceleration>0.002623 -0.023211 -0.039569 -0.003453 0.004168 -0.001078</acceleration>
+          <wrench>2.4e-05 -0.000209 -0.000356 0 -0 0</wrench>
+        </link>
+        <link name='link_12'>
+          <pose>1.01517 -0.780781 1.15916 1.86565 -1.32602 -2.3283</pose>
+          <velocity>1.2e-05 -3.1e-05 -1e-05 -5e-05 4e-06 -2.3e-05</velocity>
+          <acceleration>0.004867 -0.005607 -0.037909 -0.017502 0.010208 -0.003376</acceleration>
+          <wrench>4.4e-05 -5e-05 -0.000341 0 -0 0</wrench>
+        </link>
+        <link name='link_13'>
+          <pose>0.981864 -0.816012 1.3532 1.70417 -1.37181 -2.16366</pose>
+          <velocity>1.4e-05 -1.8e-05 -1e-05 -3.8e-05 3e-06 -2.1e-05</velocity>
+          <acceleration>0.006789 0.000853 -0.03509 -0.009658 0.008905 -0.002849</acceleration>
+          <wrench>6.1e-05 8e-06 -0.000316 0 -0 0</wrench>
+        </link>
+        <link name='link_14'>
+          <pose>0.962011 -0.845488 1.52926 -1.88923 -1.42504 1.42665</pose>
+          <velocity>1.5e-05 -1e-05 -1e-05 -2e-06 -1.6e-05 -2e-05</velocity>
+          <acceleration>0.006866 0.001646 -0.031739 0.016381 -0.006886 -0.001906</acceleration>
+          <wrench>6.2e-05 1.5e-05 -0.000286 0 -0 0</wrench>
+        </link>
+        <link name='link_15'>
+          <pose>0.965726 -0.819735 1.70697 -1.87573 -1.41081 1.41301</pose>
+          <velocity>1.4e-05 -8e-06 -1e-05 4e-06 -1.6e-05 -2.1e-05</velocity>
+          <acceleration>0.005452 -0.000621 -0.027606 0.018927 -0.007191 -0.002065</acceleration>
+          <wrench>4.9e-05 -6e-06 -0.000248 0 -0 0</wrench>
+        </link>
+        <link name='link_16'>
+          <pose>0.970733 -0.78827 1.90441 -2.93005 -1.52082 2.47088</pose>
+          <velocity>1.2e-05 -9e-06 -9e-06 -1.1e-05 -8e-06 -2.2e-05</velocity>
+          <acceleration>0.004478 -0.002246 -0.023149 0.006695 -0.001056 -0.002846</acceleration>
+          <wrench>4e-05 -2e-05 -0.000208 0 -0 0</wrench>
+        </link>
+        <link name='link_17'>
+          <pose>0.962905 -0.78206 2.10417 1.88662 -1.54956 -2.34591</pose>
+          <velocity>1e-05 -6e-06 -8e-06 -1.3e-05 -8e-06 -2.2e-05</velocity>
+          <acceleration>0.003909 -0.002511 -0.0186 0.003264 -0.00174 -0.002916</acceleration>
+          <wrench>3.5e-05 -2.3e-05 -0.000167 0 -0 0</wrench>
+        </link>
+        <link name='link_18'>
+          <pose>0.959933 -0.785095 2.30412 1e-06 -1.36728 -0.455054</pose>
+          <velocity>8e-06 -3e-06 -7e-06 -1.6e-05 -3.3e-05 -2.4e-05</velocity>
+          <acceleration>0.001882 -0.001618 -0.013386 -0.007284 -0.015637 -0.002615</acceleration>
+          <wrench>1.7e-05 -1.5e-05 -0.00012 0 -0 0</wrench>
+        </link>
+        <link name='link_19'>
+          <pose>0.996242 -0.802861 2.5 0 -0 0</pose>
+          <velocity>1e-06 -0 -3e-06 0 -0 0</velocity>
+          <acceleration>0.000136 -0.000515 -0.007822 -5.5e-05 -0.000889 5.9e-05</acceleration>
+          <wrench>1e-06 -5e-06 -7e-05 0 -0 0</wrench>
+        </link>
+        <link name='tether_connection_link'>
+          <pose>0.996242 -0.802861 2.5 0 -0 0</pose>
+          <velocity>-0 0 0 0 -0 0</velocity>
+          <acceleration>-0 1e-06 2.2e-05 0 -0 0</acceleration>
+          <wrench>-0 1e-06 2.2e-05 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>6.31579 -6.26164 3.52967 0 0.275643 2.35619</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>
