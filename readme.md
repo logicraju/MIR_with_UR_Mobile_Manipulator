@@ -28,12 +28,12 @@ Install dependencies using the command:
 
 ### Contact Us
 --------------
-ThunDroids LLP
-54/69A, Kumaranasan Road,
-Kadavanthra PO,
-Cochin 20
-Phone: +919656609215
-Email: thundroids@gmail.com
+ThunDroids LLP  
+54/69A, Kumaranasan Road,  
+Kadavanthra PO,  
+Cochin 20  
+Phone: +919656609215  
+Email: thundroids@gmail.com  
 
 OR
 
