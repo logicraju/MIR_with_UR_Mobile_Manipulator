@@ -28,6 +28,15 @@ Install dependencies using the command:
 
 ### Contact Us
 --------------
+ThunDroids LLP
+54/69A, Kumaranasan Road,
+Kadavanthra PO,
+Cochin 20
+Phone: +919656609215
+Email: thundroids@gmail.com
+
+OR
+
 QboticsLabs  
 Address: Door No. 8/428, Kurumassery, Kochi, Kerala 683579  
 Phone: +918907590702  
